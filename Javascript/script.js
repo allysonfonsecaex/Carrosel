@@ -1,39 +1,54 @@
-//Captura o botão "proximo"
+ // Captura o botão "proximo"
 let btnProximo = document.getElementById("proximo");
-//Captura o botão "anterior"
+
+// Captura o botão "anterior"
 let btnAnterior = document.getElementById("anterior");
-//Captura o quadro onde a fotográfia é exibida
+
+// Captura o quadro onde a fotografia é exibida
 let Quadroimagem = document.getElementById("imagem");
-//Cria o album e guarda as fotos
+
+// Cria o album e guarda as fotos
 let album = [
     "https://picsum.photos/id/1015/1200/600",
     "https://picsum.photos/id/1025/1200/600",
-    "https://picsum.photos/id/1043/1200/600",
-]
-//Quando o botão próximo for clicado,
-//executará a função mostrar proximo
-btnProximo.addEventListener("click", mostrarProximo);
-btnAnterior.addEventListener("click", mostrarAnterior)
- 
-//Define a posição inicial da fotografia do album
+    "https://picsum.photos/id/1043/1200/600"
+];
+
+// Define a posição inicial da fotografia do album
 let foto = 0;
- 
-//Função responsável por mostrar a proxima fotografia
-function mostrarProximo(){
-    //Avança uma posição do álbum
+
+// Exibe a primeira fotografia
+Quadroimagem.src = album[foto];
+
+// Quando o botão próximo for clicado
+btnProximo.addEventListener("click", mostrarProximo);
+
+// Quando o botão anterior for clicado
+btnAnterior.addEventListener("click", mostrarAnterior);
+
+// Função responsável por mostrar a proxima fotografia
+function mostrarProximo() {
+    // Avança uma posição do album
     foto = foto + 1;
-    //Verifica se passou a última fotografia
-    if(foto >= album.length)
-        //Volta a posição inicial
-        foto = 0
-    Quadroimagem.src = album[foto];
- 
-}
-function mostrarAnterior(){
-    //Retrocede uma posição do álbum
-    foto = foto - 1;
-    if(foto < 0){
-        foto = album.length - 1
+
+    // Verifica se passou da última fotografia
+    if (foto >= album.length) {
+        // Volta para a posição inicial
+        foto = 0;
     }
+
+    Quadroimagem.src = album[foto];
+}
+
+// Função responsável por mostrar a fotografia anterior
+function mostrarAnterior() {
+    // Retrocede uma posição do album
+    foto = foto - 1;
+
+    // Verifica se chegou antes da primeira fotografia
+    if (foto < 0) {
+        foto = album.length - 1;
+    }
+
     Quadroimagem.src = album[foto];
 }
